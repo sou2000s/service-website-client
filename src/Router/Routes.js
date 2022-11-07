@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom"
 import AddTour from "../components/AddTour/AddTour"
 import Home from "../components/Home/Home"
 import Main from "../components/MainLayout/Main"
+import MyReview from "../components/MyReview/MyReview"
 
 import Tours from "../components/Tours/Tours"
 
@@ -14,6 +15,7 @@ import Tours from "../components/Tours/Tours"
         children: [
             {
                 path:'/',
+                loader: ()=> fetch('http://localhost:5000/hometours'),
                 element: <Home></Home>
             },
             {
@@ -23,6 +25,10 @@ import Tours from "../components/Tours/Tours"
             {
                 path:'/addtour',
                 element:<AddTour/>
+            },
+            {
+                path:'/myreview',
+                element:<MyReview/>
             }
         ]
     }
