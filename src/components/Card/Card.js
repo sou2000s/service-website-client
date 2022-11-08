@@ -10,7 +10,8 @@ const Card = ({tour}) => {
   </figure>
   <div className="card-body items-center text-center">
     <h2 className="card-title">{tour.name}</h2>
-    <p>{tour.description.slice(0 , 150)}</p>
+    <p>{tour.description?.slice(0 , 150)}</p>
+    <p>{tour.price}</p>
     <div className="card-actions">
       <Link className="btn btn-outline" to={`/tours/${tour._id}`}>Details</Link>
     </div>

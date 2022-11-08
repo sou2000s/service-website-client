@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import ReviewCard from '../ReviewCard/ReviewCard';
 
+import Swiper from 'react-slider-swiper'
 const TourDetails = () => {
     const data = useLoaderData()
 
@@ -25,7 +26,8 @@ const TourDetails = () => {
             text: form.reviewText.value,
             tourName: form.tourName.value,
             tourId : _id,
-            customerName: user?.displayName
+            customerName: user?.displayName,
+            customerImage: user?.photoURL,
         }
 
 
@@ -55,9 +57,7 @@ const TourDetails = () => {
                  <h1 className='text-xl'>  {price}</h1>
                  <p>Description : {description}</p>
                  <h1>Tour plan : {
-                    TourPlan.map(plan => <ul>
-                        <li>{plan}</li>
-                    </ul>)
+                    TourPlan?.map(plan => <span>{plan}</span>)
                  }</h1>
             </div>
 

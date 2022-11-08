@@ -16,30 +16,32 @@ const Home = () => {
             className="max-w-sm rounded-lg shadow-2xl"
           />
           <div>
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+            <p className="py-6 text-5xl">
+              Hello From Souparna! I Travel The World To Find Me. Lets Join Me And Find Your Self With  Me.  
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <Link to='/tours' className="btn btn-primary">Book Your Tour With Me</Link>
           </div>
         </div>
       </div>
 
-           <h1 className="text-center text-6xl">Our Tours</h1>
+           <h1 className="text-center text-6xl mt-24">My Favourite Tours</h1>
           
 
             <div className="grid grid-cols-3 md:ml-36">
                 {
-                    data.data.map(tour => <Card key={tour._id} tour={tour}></Card>)
+                    data.result.map(tour => <Card key={tour._id} tour={tour}></Card>)
                 }
             </div>
            
-              <div className="text-center pt-3">
+              <div className="text-center mt-12 ">
               <Link to="/tours " className="btn btn-accent ">Show All</Link>
               </div>
+          
 
+
+          <div>
+
+          </div>
      
 
     </div>
