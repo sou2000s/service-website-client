@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Card = ({tour}) => {
     return (
@@ -11,7 +12,7 @@ const Card = ({tour}) => {
     <h2 className="card-title">{tour.name}</h2>
     <p>{tour.description.slice(0 , 150)}</p>
     <div className="card-actions">
-      <button className="btn btn-outline">Details</button>
+      <Link className="btn btn-outline" to={`/tours/${tour._id}`}>Details</Link>
     </div>
   </div>
 </div>
