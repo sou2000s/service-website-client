@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 
 import AddTour from "../components/AddTour/AddTour"
 import Home from "../components/Home/Home"
+import Login from "../components/Login/Login"
 import Main from "../components/MainLayout/Main"
 import MyReview from "../components/MyReview/MyReview"
 import Register from "../components/Register/Register"
@@ -43,6 +44,10 @@ import Tours from "../components/Tours/Tours"
             {
                 path:'/register',
                 element:<Register/>
+            },
+            {
+                path:'/login',
+                element: <Login/>
             }
         ]
     }

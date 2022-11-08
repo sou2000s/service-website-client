@@ -1,16 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import ReviewCard from '../ReviewCard/ReviewCard';
 
 const TourDetails = () => {
     const data = useLoaderData()
-    console.log(data);
+
+    const [reviews , setreviews] = useState([])
+
     const {user} = useContext(AuthContext)
+
 
     const {name , price , description , TourPlan , image , _id} = data.data;
 
     const handlePostReview = e =>{
         e.preventDefault()
+        if(!user?.email){
+            alert('please login first')
+            return;
+        }
       const form = e.target;
         const review = {
             email: user?.email,
@@ -31,6 +39,13 @@ const TourDetails = () => {
         .then(res => res.json())
         .then(data => console.log(data))
     }
+
+        
+            fetch(`http://localhost:5000/reviews?name=${name}`)
+            .then(res => res.json())
+             .then(data => setreviews(data.result))
+        
+
     return (
         <div>
        
@@ -58,6 +73,12 @@ const TourDetails = () => {
                           <button type='submit' className='btn btn-warning'>Post review</button>
                     </form>
                  </div>
+            </div>
+
+
+
+            <div>
+                  {reviews.map(review => <ReviewCard key={review._id} review={review}/>)}
             </div>
         </div>
     );

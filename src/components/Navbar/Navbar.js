@@ -17,6 +17,7 @@ const Navbar = () => {
             <Link className='ml-5' to='/tours'>Tours</Link>
             <Link className='ml-5' to='/myreview'>My review</Link>
             <Link className='ml-5' to='/register'>Register</Link>
+            <Link className='ml-5' to='/login'>Login</Link>
             <Link className='ml-5' onClick={handleLogout}>Logout</Link>
             {
                 user?.displayName && <p>{user?.displayName }</p> 
