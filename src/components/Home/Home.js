@@ -27,7 +27,7 @@ const Home = () => {
            <h1 className="text-center text-6xl mt-24">My Favourite Tours</h1>
           
 
-            <div className="grid grid-cols-3 md:ml-36">
+            <div className="grid grid-cols-3 mt-32 md:ml-36">
                 {
                     data.result.map(tour => <Card key={tour._id} tour={tour}></Card>)
                 }

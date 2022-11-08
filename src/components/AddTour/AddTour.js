@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const AddTour = () => {
 
@@ -10,13 +11,14 @@ const AddTour = () => {
     const price = form.price.value
     const description = form.description.value
     const tourPlan = form.tourPlan.value;
-    
+    const TotalDay = form.TotalDay.value
     const addededTour = {
         name: tourName,
         image: image,
         price: price,
         description: description,
-        TourPlan: [tourPlan]
+        TourPlan: [tourPlan],
+        TotalDay: TotalDay
 
     }
 
@@ -29,29 +31,33 @@ const AddTour = () => {
         body: JSON.stringify(addededTour)
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+        if(data.data.acknowledged){
+            toast.success('tour adeded')
+            form.reset()
+        }
+    })
  }
 
     return (
-        <div>
-             <form onSubmit={handleAddTour}>
-             <label htmlFor="">Tour Name</label>
-                <input type="text" name="tourName" id="" />
-                     <br />
-                     <label htmlFor="">Image</label>
-                 <input type="text"  name='image'/>
-                     <br />
-                     <label htmlFor="">Price</label>
-                 <input type="text"  name='price'/>
-                 <br />
-                <div className='flex'>
-                <label htmlFor="">Description</label>
-                 <textarea name="description" id="" cols="30" rows="10"></textarea>
-                </div>
-                 <br />
-                 <label htmlFor="">Tour Plan</label>
-                 <textarea name="tourPlan" id="" cols="30" rows="10"></textarea>
-                 <button type='submit'>Add tour</button>
+        <div className='text-center mt-10'>
+              <h1 className='text-4xl mb-10'>Add Tour</h1> 
+             <form onSubmit={handleAddTour} className="">
+             <input type="text" name='tourName' placeholder="Tour Name"  className="input input-bordered input-primary w-full max-w-xs" /> 
+             <br />
+             <input type="text"  name='price' placeholder="price"  className="input input-bordered input-primary w-full mt-9 max-w-xs" /> 
+             <br />
+             <input type="text"  name='image' placeholder="Imageurl"  className="input input-bordered input-primary w-full mt-9 max-w-xs" /> 
+             <br />
+             <input type="text"   name='TotalDay' placeholder="TotalDay"  className="input input-bordered input-primary mt-9 w-full max-w-xs" /> 
+             <br />
+             <div className='flex flex-col md:flex-row   md:justify-center '>
+             <textarea name='description' className="textarea mt-9 textarea-primary" placeholder="Description"></textarea>
+            
+            <textarea name='tourPlan' className="textarea ml-11 mt-9 textarea-primary md:mr-0 mr-11" placeholder="Tour Plan"></textarea>
+             </div> 
+           
+                 <button type='submit' className='btn btn-primary mt-9'>Add tour</button>
              </form>
         </div>
     );

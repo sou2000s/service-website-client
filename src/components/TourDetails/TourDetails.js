@@ -48,6 +48,8 @@ const TourDetails = () => {
              .then(data => setreviews(data.result))
         
 
+     
+
     return (
         <div>
        
@@ -65,6 +67,7 @@ const TourDetails = () => {
                  <h1 className='text-3xl'>Reviews</h1>
 
                  <div>
+                     {!user?.email  && <p>Login first to post review</p>}
                     <form onSubmit={handlePostReview}>
                           <input type="text"  name='tourName' Value={name} />
                           <br />
@@ -77,11 +80,15 @@ const TourDetails = () => {
 
 
 
-            <div>
-                  {reviews.map(review => <ReviewCard key={review._id} review={review}/>)}
+            <div className=''>
+                    {reviews.length}
             </div>
         </div>
     );
 };
 
 export default TourDetails;
+
+// <ReviewCard key={review._id} review={review}/>)
+
+//  {/* {reviews.map(review =>  } */}

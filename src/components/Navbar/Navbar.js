@@ -13,12 +13,21 @@ const Navbar = () => {
     return (
         <div className='text-center'> 
             <Link to='/'>Home</Link>
-            <Link className='ml-5'  to='/addtour'>Add Tour</Link>
             <Link className='ml-5' to='/tours'>Tours</Link>
+            {
+                user?.email ? <>
+                 <Link className='ml-5'  to='/addtour'>Add Tour</Link>
             <Link className='ml-5' to='/myreview'>My review</Link>
+            <Link className='ml-5' onClick={handleLogout}>Logout</Link>
+            </> : 
+            <>  
             <Link className='ml-5' to='/register'>Register</Link>
             <Link className='ml-5' to='/login'>Login</Link>
-            <Link className='ml-5' onClick={handleLogout}>Logout</Link>
+            </>
+            }
+           
+          
+           
             {
                 user?.displayName && <p>{user?.displayName }</p> 
             }
