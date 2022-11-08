@@ -20,6 +20,7 @@ import Tours from "../components/Tours/Tours"
             },
             {
                 path: '/tours',
+                loader: ()=> fetch('http://localhost:5000/tours'),
                 element:<Tours/>
             },
             {

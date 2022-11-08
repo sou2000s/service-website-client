@@ -30,13 +30,13 @@ const Home = () => {
            <h1 className="text-center text-6xl">Our Tours</h1>
           
 
-            <div className="grid grid-cols-3 ml-36">
+            <div className="grid grid-cols-3 md:ml-36">
                 {
                     data.data.map(tour => <Card key={tour._id} tour={tour}></Card>)
                 }
             </div>
            
-              <div className="text-center">
+              <div className="text-center pt-3">
               <Link to="/tours " className="btn btn-accent ">Show All</Link>
               </div>
 
