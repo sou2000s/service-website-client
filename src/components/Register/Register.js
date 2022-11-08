@@ -15,8 +15,24 @@ const Register = () => {
     console.log(name , password , photoURL , email);
 
     createUser(email , password)
-    .then(res => console.log(res.user))
+    .then(() => {
+      handleUserProfile(name , photoURL)
+      form.reset()
+    })
     .catch(err => console.log(err.message))
+ }
+
+ const handleUserProfile = (name , photoURL) =>{
+  const profile = {
+    displayName : name,
+    photoURL: photoURL
+    
+  }
+  setUserNameAndProfile(profile)
+  .then(()=>{
+    setUserProfile(profile)
+  })
+  .catch(err => console.log(err.message))
  }
 
   return (

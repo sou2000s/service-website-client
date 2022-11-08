@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Navbar = () => {
-
-    const {logout} = useContext(AuthContext)
+   
+    const {user ,logout} = useContext(AuthContext)
     const handleLogout = ()=>{
         logout()
         .then(()=>{})
@@ -18,6 +18,9 @@ const Navbar = () => {
             <Link className='ml-5' to='/myreview'>My review</Link>
             <Link className='ml-5' to='/register'>Register</Link>
             <Link className='ml-5' onClick={handleLogout}>Logout</Link>
+            {
+                user?.displayName && <p>{user?.displayName }</p> 
+            }
         </div>
     );
 };
