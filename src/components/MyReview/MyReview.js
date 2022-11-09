@@ -9,13 +9,14 @@ const MyReview = () => {
   const { user } = useContext(AuthContext);
   const [userReview, setUserReview] = useState([]);
   const [review , setReview] = useState({})
+  const [refresh , setRefresh] = useState(false)
 
 
   useEffect(() => {
     fetch(`http://localhost:5000/userReview?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUserReview(data.data));
-  }, [user?.email]);
+  }, [user?.email , refresh]);
 console.log(userReview);
 
  const handleDelete = id =>{
@@ -55,7 +56,7 @@ const habdleUpdateUserReview = e =>{
   .then(res =>res.json())
   .then(data =>{
      if(data.result.modifiedCount > 0){
-      setUserReview(userReview)
+       setRefresh(!refresh)
       console.log(userReview);
      }
      console.log(data);
