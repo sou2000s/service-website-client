@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import ReviewCard from '../ReviewCard/ReviewCard'
 const TourDetails = () => {
-    const data = useLoaderData()
+    useTitle('TourDetsils')
 
+    const data = useLoaderData()
+    
     const [reviews , setreviews] = useState([])
 
     const {user} = useContext(AuthContext)

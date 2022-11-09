@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
-     const {login} = useContext(AuthContext)
+    useTitle('login')  
+    const {login} = useContext(AuthContext)
      const navigate = useNavigate()
     const handleLogin = e => {
         e.preventDefault()

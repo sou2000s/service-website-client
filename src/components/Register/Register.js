@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Register = () => {
-
+  useTitle('Register')
   const {createUser,setUserNameAndProfile , setUserProfile} = useContext(AuthContext)
  const handleRegister = e =>{
     e.preventDefault()
