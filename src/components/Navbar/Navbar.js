@@ -11,7 +11,7 @@ const Navbar = () => {
         .catch(error=> console.log(error.message))
     }
     return (
-        <div className='text-center'> 
+        <div className='text-center bg-base-300 text-[#190e0e]'> 
             <Link to='/'>Home</Link>
             <Link className='ml-5' to='/tours'>Tours</Link>
             {
@@ -28,9 +28,12 @@ const Navbar = () => {
            
           
            
-            {
-                user?.displayName && <p>{user?.displayName }</p> 
-            }
+            
+
+         
+
+
+
         </div>
     );
 };

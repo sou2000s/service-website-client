@@ -9,8 +9,8 @@ const Tours = () => {
     console.log(data);
     return (
         <div >
-        <h1 className='text-center mb-11 text-6xl'>Tours</h1>
-        <div className='grid grid-cols-3 md:ml-36 gap-32 mt-20'>
+        <h1 className='text-center mb-11 text-3xl  md:text-6xl'>Tours</h1>
+        <div className='grid md:grid-cols-3 md:ml-36 gap-32 mt-20'>
             {
  
                data.data.map(tour => <Card key={tour._id} tour={tour}></Card>)

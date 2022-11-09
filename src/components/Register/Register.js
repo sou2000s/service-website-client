@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
-
+import {FcGoogle} from 'react-icons/fc'
 const Register = () => {
   useTitle('Register')
-  const {createUser,setUserNameAndProfile , setUserProfile} = useContext(AuthContext)
+  const {createUser,setUserNameAndProfile , setUserProfile , googleAuthentication} = useContext(AuthContext)
  const handleRegister = e =>{
     e.preventDefault()
     const form = e.target;
@@ -34,6 +34,13 @@ const Register = () => {
     setUserProfile(profile)
   })
   .catch(err => console.log(err.message))
+ }
+
+
+ const handleGoogleAuthentication = () =>{
+  googleAuthentication()
+  .then((res)=> console.log(res.user))
+  .catch(error => console.log(error.message))
  }
 
   return (
@@ -89,15 +96,12 @@ const Register = () => {
                   placeholder="password"
                   className="input input-bordered"
                 />
-                <label className="label">
-                  <Link  className="label-text-alt link link-hover">
-                    Forgot password?
-                  </Link>
-                </label>
+                
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary" type="submit">Regisret</button>
               </div>
+              <FcGoogle onClick={handleGoogleAuthentication} className="text-3xl hover:cursor-pointer ml-[130px] mt-4"></FcGoogle>
             </form>
           </div>
         </div>

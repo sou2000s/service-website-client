@@ -64,12 +64,12 @@ const habdleUpdateUserReview = e =>{
 
 
   return (
-    <div className="grid grid-cols-3 gap-28 ml-36">
+    <div className="grid md:grid-cols-3 gap-28 md:ml-36">
       {userReview.length === 0 ? (
         <p>You dont post any review</p>
       ) : (
         userReview.map((review) => (
-          <div className="card w-96 bg-neutral text-neutral-content">
+          <div className="card w-60 ml-8 md:w-96 bg-neutral text-neutral-content">
             <div className="card-body items-center text-center">
               <h2 className="card-title">{review.tourName}</h2>
               <p>{review.text}</p>

@@ -5,7 +5,7 @@ import { PhotoView } from 'react-photo-view';
 const Card = ({tour}) => {
     return (
         <div>
-            <div className="card  w-96  bg-base-100 shadow-xl hover:scale-110 duration-500 ease-in-out">
+            <div className="card w-72 md:ml-0 ml-6  md:w-96  bg-base-100 shadow-xl hover:scale-110 duration-500 ease-in-out">
   <figure className="px-10 pt-10">
     <img src={tour.image} alt={tour.name} className="rounded-xl w-72   " />
   </figure>
