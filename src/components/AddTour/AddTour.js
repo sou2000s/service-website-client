@@ -24,7 +24,7 @@ const AddTour = () => {
     }
 
 
-    fetch('http://localhost:5000/addtour' , {
+    fetch('https://travelfy.vercel.app/addtour' , {
         method: 'POST',
         headers:{
             'content-type' : 'application/json'

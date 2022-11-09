@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import Card from '../Card/Card';
 
@@ -7,6 +8,10 @@ const Tours = () => {
     useTitle('Tours')
     const data = useLoaderData()
     console.log(data);
+    const {loading} = useContext(AuthContext)
+    if(loading){
+        return <progress className="progress w-56"></progress>
+    }
     return (
         <div >
         <h1 className='text-center mb-11 text-3xl  md:text-6xl'>Tours</h1>

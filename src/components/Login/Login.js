@@ -1,20 +1,46 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
     useTitle('login')  
     const {login} = useContext(AuthContext)
-     const navigate = useNavigate()
-    const handleLogin = e => {
+
+
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/" 
+ 
+    const navigate = useNavigate()
+    
+     const handleLogin = e => {
         e.preventDefault()
     const form = e.target;
     const password = form.password.value;
     const email = form.email.value;
    login(email , password)
    .then(res=>{
-    navigate('/')
+    const currentuser = {
+      email: res.user.email
+  }
+  
+   fetch('https://travelfy.vercel.app/jwt' , {
+      method: "POST",
+      headers : {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(currentuser)
+   })
+   .then(res => res.json())
+   .then(data => {
+      localStorage.setItem('token' , data.token)
+   })
+
+
+
+
+
+    navigate(from, { replace: true })
    })
    .catch(error => console.log(error.message))
       

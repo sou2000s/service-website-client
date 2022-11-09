@@ -10,9 +10,9 @@ const TourDetails = () => {
     const data = useLoaderData()
     
     const [reviews , setreviews] = useState([])
+    const [refresh , setRefresh] = useState(false)
 
-    const {user} = useContext(AuthContext)
-
+    const {user } = useContext(AuthContext)
      
      
     const {name , price , description , TotalDay,TourPlan , image , _id} = data.data;
@@ -34,7 +34,7 @@ const TourDetails = () => {
         }
 
 
-        fetch('http://localhost:5000/postreview' , {
+        fetch('https://travelfy.vercel.app/postreview' , {
             method:'POST',
             headers:{
                 'content-type' : 'application/json'
@@ -53,10 +53,13 @@ const TourDetails = () => {
 
         
            useEffect(()=>{
-            fetch(`http://localhost:5000/reviews?name=${name}`)
+            fetch(`https://travelfy.vercel.app/reviews?name=${name}`)
             .then(res => res.json())
-             .then(data => setreviews(data.result))
-           } , [name])
+             .then(data => {
+                setreviews(data.result)
+                setRefresh(!refresh)
+            })
+           } , [name , refresh])
         
 
      
@@ -93,7 +96,7 @@ const TourDetails = () => {
 
 
             <div className=' mb-20 grid grid-cols-2 gap-24 md:ml-36'>
-                    {!reviews?.length ? <p className='text-center'>Be the first one to review</p> :reviews.map(review => <ReviewCard key={review._id} review={review}/>) }
+                    {!reviews?.length ? <p className='text-center'>No Review available Be The First Person </p> :reviews.map(review => <ReviewCard key={review._id} review={review}/>) }
             </div>
         </div>
     );

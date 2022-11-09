@@ -9,6 +9,7 @@ import Register from "../components/Register/Register"
 import TourDetails from "../components/TourDetails/TourDetails"
 
 import Tours from "../components/Tours/Tours"
+import PrivateRoute from "./PrivateRoute"
 
 
   const routes =  createBrowserRouter([
@@ -18,26 +19,26 @@ import Tours from "../components/Tours/Tours"
         children: [
             {
                 path:'/',
-                loader: ()=> fetch('http://localhost:5000/hometours'),
+                loader: ()=> fetch('https://travelfy.vercel.app/hometours'),
                 element: <Home></Home>
             },
             {
                 path: '/tours',
-                loader: ()=> fetch('http://localhost:5000/tours'),
+                loader: ()=> fetch('https://travelfy.vercel.app/tours'),
                 element:<Tours/>
             },
             {
                 path:'/addtour',
-                element:<AddTour/>
+                element:<PrivateRoute><AddTour/></PrivateRoute>
             },
             {
                 path:'/myreview',
-                element:<MyReview/>
+                element:<PrivateRoute><MyReview/></PrivateRoute>
             },
             {
                 path:'/tours/:id' , 
                 loader: ({params})=> {
-                    return fetch(`http://localhost:5000/tours/${params.id}`)
+                    return fetch(`https://travelfy.vercel.app/tours/${params.id}`)
                 },
                 element:<TourDetails/>
             },

@@ -6,21 +6,31 @@ import useTitle from "../../hooks/useTitle";
 
 const MyReview = () => {
   useTitle('Myreview')
-  const { user } = useContext(AuthContext);
+  const { user , logout } = useContext(AuthContext);
   const [userReview, setUserReview] = useState([]);
   const [review , setReview] = useState({})
   const [refresh , setRefresh] = useState(false)
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/userReview?email=${user?.email}`)
-      .then((res) => res.json())
+    if(!user?.email) return ;
+    fetch(`https://travelfy.vercel.app/userReview?email=${user?.email}`,{
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        if(res.status === 401 || res.status === 403){
+          return logout()
+        }
+        return res.json()
+      } )
       .then((data) => setUserReview(data.data));
-  }, [user?.email , refresh]);
+  }, [user?.email , refresh , logout]);
 console.log(userReview);
 
  const handleDelete = id =>{
-    fetch(`http://localhost:5000/reviews/${id}`,{
+    fetch(`https://travelfy.vercel.app/reviews/${id}`,{
         method:"DELETE"
     })
     .then(res => res.json())
@@ -30,6 +40,7 @@ console.log(userReview);
         const remaining = userReview.filter(review => review._id !== id)
         toast.success('review deleted')
         setUserReview(remaining)
+        
        }
     })
 
@@ -43,10 +54,11 @@ const hanleReview = (review ) =>{
 const habdleUpdateUserReview = e =>{
   e.preventDefault()
   const text = e.target.text.value
+  console.log(text);
  const updatedReview = {
   text: text
  }
-  fetch(`http://localhost:5000/review/${review._id}` , {
+  fetch(`https://travelfy.vercel.app/review/${review._id}` , {
     method:"PUT",
     headers:{
       'Content-type': 'application/json'
@@ -57,7 +69,9 @@ const habdleUpdateUserReview = e =>{
   .then(data =>{
      if(data.result.modifiedCount > 0){
        setRefresh(!refresh)
-      console.log(userReview);
+      setReview(userReview)
+     
+      e.target.reset()
      }
      console.log(data);
   })
@@ -66,10 +80,10 @@ const habdleUpdateUserReview = e =>{
 
   return (
     <div className="grid md:grid-cols-3 gap-28 md:ml-36">
-      {userReview.length === 0 ? (
+      {userReview?.length === 0 ? (
         <p>You dont post any review</p>
       ) : (
-        userReview.map((review) => (
+        userReview?.map((review) => (
           <div className="card w-60 ml-8 md:w-96 bg-neutral text-neutral-content">
             <div className="card-body items-center text-center">
               <h2 className="card-title">{review.tourName}</h2>
@@ -91,7 +105,7 @@ const habdleUpdateUserReview = e =>{
 <div className="modal">
   <form onSubmit={habdleUpdateUserReview} className="modal-box relative">
     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <textarea name="text" id="" defaultValue={review.text} cols="30" rows="10"></textarea>
+    <input type="text" name="text" defaultValue={review.text} placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
     <button type="submit">update</button>
    
   </form>

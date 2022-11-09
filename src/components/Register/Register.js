@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import {FcGoogle} from 'react-icons/fc'
+import toast from "react-hot-toast";
 const Register = () => {
   useTitle('Register')
   const {createUser,setUserNameAndProfile , setUserProfile , googleAuthentication} = useContext(AuthContext)
@@ -39,7 +40,10 @@ const Register = () => {
 
  const handleGoogleAuthentication = () =>{
   googleAuthentication()
-  .then((res)=> console.log(res.user))
+  .then((res)=> {
+     toast.success(`welcome ${res.user.displayName}`)
+    // console.log(res.user);
+  })
   .catch(error => console.log(error.message))
  }
 
