@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
-import ReviewCard from '../ReviewCard/ReviewCard';
-
-import Swiper from 'react-slider-swiper'
+import ReviewCard from '../ReviewCard/ReviewCard'
 const TourDetails = () => {
     const data = useLoaderData()
 
@@ -11,8 +10,9 @@ const TourDetails = () => {
 
     const {user} = useContext(AuthContext)
 
-
-    const {name , price , description , TourPlan , image , _id} = data.data;
+     
+     
+    const {name , price , description , TotalDay,TourPlan , image , _id} = data.data;
 
     const handlePostReview = e =>{
         e.preventDefault()
@@ -39,35 +39,44 @@ const TourDetails = () => {
             body: JSON.stringify(review)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if(data.result.acknowledged){
+               toast.success('review adeded')
+               setreviews([...reviews , review])
+                form.reset()
+            };
+        })
     }
 
         
+           useEffect(()=>{
             fetch(`http://localhost:5000/reviews?name=${name}`)
             .then(res => res.json())
              .then(data => setreviews(data.result))
+           } , [name])
         
 
      
 
     return (
         <div>
-       
-            <div>
-                 <img src={image} alt="" className='w-56' />
+         <h1 className='text-4xl text-center mb-14'>Tour Details</h1>
+            <div className='w-96 text-center mx-auto my-auto  '>
+                 <img src={image} alt="" className=' rounded' />
                  <h1 className='text-4xl'>  {name}</h1>
-                 <h1 className='text-xl'>  {price}</h1>
-                 <p>Description : {description}</p>
-                 <h1>Tour plan : {
-                    TourPlan?.map(plan => <span>{plan}</span>)
+                 <h1 ><span className='text-2xl text-orange-600'>Price:</span>  {price} K</h1>
+                 <p><span className='text-3xl text-orange-600'>Description </span>: {description}</p>
+                 <h1 className='pt-4 '><span className="text-3xl text-orange-600">Tour plan</span> : {
+                    TourPlan?.map(plan => <span className=''>{plan}</span>)
                  }</h1>
+                 <p className='pt-5 '><span className='text-2xl text-orange-600'>Total Day</span> : {TotalDay}</p>
             </div>
 
             <div className='mt-24 text-center mb-24'>
                  <h1 className='text-3xl'>Reviews</h1>
 
                  <div>
-                     {!user?.email  && <p>Login first to post review</p>}
+                     {!user?.email  && <Link to='/login'>Login first to post review. Login</Link>}
                     <form onSubmit={handlePostReview}>
                           <input type="text"  name='tourName' Value={name} />
                           <br />
@@ -80,8 +89,8 @@ const TourDetails = () => {
 
 
 
-            <div className=''>
-                    {reviews.length}
+            <div className=' mb-20 grid grid-cols-2 gap-24 md:ml-36'>
+                    {!reviews?.length ? <p className='text-center'>Be the first one to review</p> :reviews.map(review => <ReviewCard key={review._id} review={review}/>) }
             </div>
         </div>
     );
