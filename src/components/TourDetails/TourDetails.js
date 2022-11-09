@@ -67,7 +67,7 @@ const TourDetails = () => {
     return (
         <div>
          <h1 className='text-4xl text-center mb-14'>Tour Details</h1>
-            <div className='w-96 text-center mx-auto my-auto  '>
+            <div className='md:w-96 w-80 text-center mx-auto my-auto  '>
                  <img src={image} alt="" className=' rounded' />
                  <h1 className='text-4xl'>  {name}</h1>
                  <h1 ><span className='text-2xl text-orange-600'>Price:</span>  {price} K</h1>
@@ -95,7 +95,7 @@ const TourDetails = () => {
 
 
 
-            <div className=' mb-20 grid grid-cols-2 gap-24 md:ml-36'>
+            <div className=' mb-20 grid md:grid-cols-3 gap-24 ml-8 md:ml-36'>
                     {!reviews?.length ? <p className='text-center'>No Review available Be The First Person </p> :reviews.map(review => <ReviewCard key={review._id} review={review}/>) }
             </div>
         </div>

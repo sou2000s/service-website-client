@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 
 import AddTour from "../components/AddTour/AddTour"
+import Blogs from "../components/Blogs/Blogs"
 import Home from "../components/Home/Home"
 import Login from "../components/Login/Login"
 import Main from "../components/MainLayout/Main"
@@ -49,6 +50,10 @@ import PrivateRoute from "./PrivateRoute"
             {
                 path:'/login',
                 element: <Login/>
+            },
+            {
+                path:'/blogs',
+                element:<Blogs/>
             }
         ]
     }

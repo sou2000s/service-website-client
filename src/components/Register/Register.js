@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import {FcGoogle} from 'react-icons/fc'
@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 const Register = () => {
   useTitle('Register')
   const {createUser,setUserNameAndProfile , setUserProfile , googleAuthentication} = useContext(AuthContext)
+  const navigate = useNavigate()
  const handleRegister = e =>{
     e.preventDefault()
     const form = e.target;
@@ -17,9 +18,25 @@ const Register = () => {
     console.log(name , password , photoURL , email);
 
     createUser(email , password)
-    .then(() => {
+    .then((res) => {
+      const currentuser = {
+        email: res.user.email
+      }
       handleUserProfile(name , photoURL)
       form.reset()
+      navigate('/')
+      fetch('https://travelfy.vercel.app/jwt' , {
+      method: "POST",
+      headers : {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(currentuser)
+   })
+   .then(res => res.json())
+   .then(data => {
+      localStorage.setItem('token' , data.token)
+   })
+
     })
     .catch(err => console.log(err.message))
  }

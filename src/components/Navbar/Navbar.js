@@ -14,6 +14,7 @@ const Navbar = () => {
         <div className='text-center bg-base-300 text-[#190e0e]'> 
             <Link to='/'>Home</Link>
             <Link className='ml-5' to='/tours'>Tours</Link>
+            <Link className='ml-5' to='/blogs'>Blogs</Link>
             {
                 user?.email ? <>
                  <Link className='ml-5'  to='/addtour'>Add Tour</Link>
