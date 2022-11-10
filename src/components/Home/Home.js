@@ -6,11 +6,14 @@ import KeyFocusCards from "../KeyFocusCards/KeyFocusCards";
 import accomondationIcon from '../../pictures/icons/icons8-accommodation-64.png'
 import TransportationIcon from '../../pictures/icons/icons8-public-transportation-48.png'
 import expertIcon from '../../pictures/icons/icons8-expert-64.png'
+import Contact from "../Contact/Contact";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
     useTitle("Home") 
     const data = useLoaderData()
     console.log(data);
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-300">
@@ -28,7 +31,7 @@ const Home = () => {
            <h1 className="text-center  text-3xl md:text-6xl mt-24">My Favourite Tours</h1>
           
 
-            <div className="grid md:grid-cols-3 ml-6 mt-32 md:ml-36">
+            <div className="md:flex flex-row-reverse justify-evenly flex-wrap">
                 {
                     data.result.map(tour => <Card key={tour._id} tour={tour}></Card>)
                 }
@@ -49,10 +52,12 @@ const Home = () => {
           </div>
           </div>
       
-       <div>
-        
+       <div className="mt-20 mb-14 md:ml-0  flex justify-center">
+               <Contact/>
        </div>
-         
+          
+     <Footer/>
+
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import useTitle from '../../hooks/useTitle';
+import Footer from '../Footer/Footer';
 
 const Blogs = () => {
     useTitle('Blogs')
@@ -17,6 +18,8 @@ const Blogs = () => {
           
           </div>
          
+
+         <Footer/>
         </div>
     );
 };

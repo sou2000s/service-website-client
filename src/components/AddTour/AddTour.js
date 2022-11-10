@@ -1,6 +1,7 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle';
+import Footer from '../Footer/Footer';
 
 const AddTour = () => {
  useTitle('AddTour')
@@ -43,7 +44,7 @@ const AddTour = () => {
     return (
         <div className='text-center mt-10'>
               <h1 className='text-4xl mb-10'>Add Tour</h1> 
-             <form onSubmit={handleAddTour} className="">
+             <form onSubmit={handleAddTour} className="mb-10">
              <input type="text" name='tourName' placeholder="Tour Name"  className="input input-bordered input-primary w-full max-w-xs" /> 
              <br />
              <input type="text"  name='price' placeholder="price"  className="input input-bordered input-primary w-full mt-9 max-w-xs" /> 
@@ -60,6 +61,9 @@ const AddTour = () => {
            
                  <button type='submit' className='btn btn-primary mt-9'>Add tour</button>
              </form>
+
+            <Footer></Footer>
+
         </div>
     );
 };

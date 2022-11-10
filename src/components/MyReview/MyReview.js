@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
+import Footer from "../Footer/Footer";
 
 const MyReview = () => {
   useTitle('Myreview')
@@ -79,12 +80,13 @@ const habdleUpdateUserReview = e =>{
 
 
   return (
-    <div className="grid md:grid-cols-3 gap-28 md:ml-36">
-      {userReview?.length === 0 ? (
+    <div >
+    <div className="grid md:grid-cols-3 md:gap-20 ml-3 gap-3 md:ml-36 mb-96">
+    {userReview.length === 0 ? (
         <p>You dont post any review</p>
       ) : (
         userReview?.map((review) => (
-          <div className="card w-60 ml-8 md:w-96 bg-neutral text-neutral-content">
+          <div className="card w-60 md:mt-20 mt-6  ml-8 md:w-96 bg-neutral text-neutral-content">
             <div className="card-body items-center text-center">
               <h2 className="card-title">{review.tourName}</h2>
               <p>{review.text}</p>
@@ -105,14 +107,17 @@ const habdleUpdateUserReview = e =>{
 <div className="modal">
   <form onSubmit={habdleUpdateUserReview} className="modal-box relative">
     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <input type="text" name="text" defaultValue={review.text} placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
-    <button type="submit">update</button>
+    <textarea className="textarea textarea-accent w-72" defaultValue={review.text} placeholder="" name="text"></textarea>
+    <br />
+    <button type="submit" className="btn btn-outline btn-success">update</button>
    
   </form>
 </div>
+    </div>
+      
       
 
-
+    <Footer />
     </div>
   );
 };
