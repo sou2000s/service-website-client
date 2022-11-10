@@ -20,14 +20,7 @@ const firebaseConfig = {
 
 
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCU7Q4EPEJPkb-3aPvoJ9ry9Qro6PbglIg",
-//   authDomain: "travelfy-9959c.firebaseapp.com",
-//   projectId: "travelfy-9959c",
-//   storageBucket: "travelfy-9959c.appspot.com",
-//   messagingSenderId: "159035282793",
-//   appId: "1:159035282793:web:cfa2268c45601d771c59f8"
-// };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

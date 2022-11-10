@@ -54,8 +54,10 @@ const hanleReview = (review ) =>{
  
 const habdleUpdateUserReview = e =>{
   e.preventDefault()
-  const text = e.target.text.value
-  console.log(text);
+  console.log(e.target);
+  const text = e.target.text.value;
+  // console.log(text);
+ 
  const updatedReview = {
   text: text
  }
@@ -68,11 +70,12 @@ const habdleUpdateUserReview = e =>{
   })
   .then(res =>res.json())
   .then(data =>{
-     if(data.result.modifiedCount > 0){
+    if(data.result.modifiedCount){
+      
        setRefresh(!refresh)
-      // setReview(userReview)
+       e.target.reset()
+      
      
-      e.target.reset()
      }
      console.log(data);
   })
@@ -107,7 +110,7 @@ const habdleUpdateUserReview = e =>{
 <div className="modal">
   <form onSubmit={habdleUpdateUserReview} className="modal-box relative">
     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <textarea className="textarea textarea-accent w-72" defaultValue={review.text} placeholder="" name="text"></textarea>
+    <textarea className="textarea textarea-accent w-72"  placeholder=""  name="text"></textarea>
     <br />
     <button type="submit" className="btn btn-outline btn-success">update</button>
    

@@ -9,7 +9,7 @@ const Contact = () => {
             email: e.target.email.value,
             Usermessage:e.target.message.value,
          }
-        fetch('http://localhost:5000/enquire' , {
+        fetch(' https://travelfy.vercel.app/enquire' , {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
