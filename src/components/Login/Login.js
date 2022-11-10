@@ -4,10 +4,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import Footer from '../Footer/Footer';
-
+import {FcGoogle} from 'react-icons/fc'
 const Login = () => {
     useTitle('login')  
-    const {login} = useContext(AuthContext)
+    const {login , googleAuthentication} = useContext(AuthContext)
 
 
     const location = useLocation()
@@ -38,16 +38,38 @@ const Login = () => {
     toast.success('welcome back')
     localStorage.setItem('token' , data.token)
    })
-
-
-
-
-
     navigate(from, { replace: true })
    })
    .catch(error => console.log(error.message))
       
 
+   
+
+    }
+
+
+
+    const handleGoogleLogin = () => {
+      googleAuthentication()
+      .then(res => {
+        const currentUser = {
+          email: res.user.email
+        }
+        fetch('https://travelfy.vercel.app/jwt' , {
+          method: "POST",
+          headers : {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+       })
+       .then(res => res.json())
+       .then(data => {
+        toast.success('welcome back')
+        localStorage.setItem('token' , data.token)
+       })
+       navigate(from, { replace: true })
+      })
+      .catch(error => console.log(error.message))
     }
     return (
         <div>
@@ -82,6 +104,7 @@ const Login = () => {
                   placeholder="password"
                   className="input input-bordered"
                 />
+                <FcGoogle className='ml-36 text-xl hover:cursor-pointer ' onClick={handleGoogleLogin}/>
                 <label className="label">
                   <Link to='/register'  className="label-text-alt link link-hover">
                   Dont have acount? Register

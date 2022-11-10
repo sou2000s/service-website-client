@@ -45,7 +45,7 @@ const Home = () => {
           <div className="mt-28">
           <h1 className="text-center text-5xl">My Key Focus</h1>
            <p className="text-center mt-5 text-2xl">My thoughtful team of knowledgeable experts are here to take care of every need, from the second you contact us to when you return</p>
-          <div className="grid md:grid-cols-3 md:ml-36 mt-7">
+          <div className="grid md:grid-cols-3 gap-8 md:ml-36 mt-7">
                  <KeyFocusCards heading="Accommodation" icon={accomondationIcon} text="We try to provide the best accomodation that is possible to provide."></KeyFocusCards>
                  <KeyFocusCards heading="Transportation" icon={TransportationIcon} text="We provide the best transport for our visitors so that they can enjoy their trip.."></KeyFocusCards>
                  <KeyFocusCards heading="Expert Trip Planning" icon={expertIcon} text="Our thoughful team plans every trip based on the customer budgets.."></KeyFocusCards>
