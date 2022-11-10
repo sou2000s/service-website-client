@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
+import Footer from '../Footer/Footer';
 import ReviewCard from '../ReviewCard/ReviewCard'
 const TourDetails = () => {
     useTitle('TourDetsils')
@@ -20,7 +21,7 @@ const TourDetails = () => {
     const handlePostReview = e =>{
         e.preventDefault()
         if(!user?.email){
-            alert('please login first')
+        toast.error("login first")
             return;
         }
       const form = e.target;
@@ -76,6 +77,8 @@ const TourDetails = () => {
                     TourPlan?.map(plan => <span className=''>{plan}</span>)
                  }</h1>
                  <p className='pt-5 '><span className='text-2xl text-orange-600'>Total Day</span> : {TotalDay}</p>
+
+                 <button className='btn btn-success mt-5'>Buy Now</button>
             </div>
 
             <div className='mt-24 text-center mb-24'>
@@ -98,6 +101,8 @@ const TourDetails = () => {
             <div className=' mb-20 grid md:grid-cols-3 gap-24 ml-8 md:ml-36'>
                     {!reviews?.length ? <p className='text-center'>No Review available Be The First Person </p> :reviews.map(review => <ReviewCard key={review._id} review={review}/>) }
             </div>
+
+            <Footer/>
         </div>
     );
 };

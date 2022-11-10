@@ -70,7 +70,7 @@ const habdleUpdateUserReview = e =>{
   .then(data =>{
      if(data.result.modifiedCount > 0){
        setRefresh(!refresh)
-      setReview(userReview)
+      // setReview(userReview)
      
       e.target.reset()
      }
@@ -81,7 +81,7 @@ const habdleUpdateUserReview = e =>{
 
   return (
     <div >
-    <div className="grid md:grid-cols-3 md:gap-20 ml-3 gap-3 md:ml-36 mb-96">
+    <div className="grid  md:grid-cols-3 md:gap-20 ml-3 gap-3 md:ml-36 mb-96">
     {userReview.length === 0 ? (
         <p>You dont post any review</p>
       ) : (

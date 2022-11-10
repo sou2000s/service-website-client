@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
+import Footer from '../Footer/Footer';
 
 const Login = () => {
     useTitle('login')  
@@ -33,7 +35,8 @@ const Login = () => {
    })
    .then(res => res.json())
    .then(data => {
-      localStorage.setItem('token' , data.token)
+    toast.success('welcome back')
+    localStorage.setItem('token' , data.token)
    })
 
 
@@ -80,8 +83,8 @@ const Login = () => {
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <Link  className="label-text-alt link link-hover">
-                    Forgot password?
+                  <Link to='/register'  className="label-text-alt link link-hover">
+                  Dont have acount? Register
                   </Link>
                 </label>
               </div>
@@ -91,7 +94,9 @@ const Login = () => {
             </form>
           </div>
         </div>
+
       </div>
+         <Footer/>
         </div>
     );
 };

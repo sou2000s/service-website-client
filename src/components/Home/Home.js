@@ -31,7 +31,7 @@ const Home = () => {
            <h1 className="text-center  text-3xl md:text-6xl mt-24">My Favourite Tours</h1>
           
 
-            <div className="md:flex flex-row-reverse justify-evenly flex-wrap">
+            <div className="md:flex md:flex-row-reverse mt-10 flex-col-reverse md:justify-evenly ">
                 {
                     data.result.map(tour => <Card key={tour._id} tour={tour}></Card>)
                 }

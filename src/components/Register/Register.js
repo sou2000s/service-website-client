@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import {FcGoogle} from 'react-icons/fc'
 import toast from "react-hot-toast";
+import Footer from "../Footer/Footer";
 const Register = () => {
   useTitle('Register')
   const {createUser,setUserNameAndProfile , setUserProfile , googleAuthentication} = useContext(AuthContext)
@@ -24,7 +25,9 @@ const Register = () => {
       }
       handleUserProfile(name , photoURL)
       form.reset()
+      toast.success("welcome")
       navigate('/')
+
       fetch('https://travelfy.vercel.app/jwt' , {
       method: "POST",
       headers : {
@@ -34,6 +37,7 @@ const Register = () => {
    })
    .then(res => res.json())
    .then(data => {
+    
       localStorage.setItem('token' , data.token)
    })
 
@@ -58,8 +62,24 @@ const Register = () => {
  const handleGoogleAuthentication = () =>{
   googleAuthentication()
   .then((res)=> {
+    navigate('/')
      toast.success(`welcome ${res.user.displayName}`)
-    // console.log(res.user);
+     const currentuser = {
+      email: res.user.email
+    }
+     fetch('https://travelfy.vercel.app/jwt' , {
+      method: "POST",
+      headers : {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(currentuser)
+   })
+   .then(res => res.json())
+   .then(data => {
+    
+      localStorage.setItem('token' , data.token)
+   })
+    
   })
   .catch(error => console.log(error.message))
  }
@@ -81,7 +101,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="name"
-                  placeholder="email"
+                  placeholder="name"
                   className="input input-bordered"
                 />
               </div>
@@ -120,13 +140,15 @@ const Register = () => {
                 
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary" type="submit">Regisret</button>
+                <button className="btn btn-success" type="submit">Regisret</button>
               </div>
+              <Link to='/login'>Allready have account? Login</Link>
               <FcGoogle onClick={handleGoogleAuthentication} className="text-3xl hover:cursor-pointer ml-[130px] mt-4"></FcGoogle>
             </form>
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
