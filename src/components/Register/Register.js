@@ -143,7 +143,7 @@ const Register = () => {
                 <button className="btn btn-success" type="submit">Regisret</button>
               </div>
               <Link to='/login'>Allready have account? Login</Link>
-              <FcGoogle onClick={handleGoogleAuthentication} className="text-3xl hover:cursor-pointer ml-[130px] mt-4"></FcGoogle>
+              <FcGoogle onClick={handleGoogleAuthentication} className="text-3xl hover:cursor-pointer ml-24 md:ml-[130px] mt-4"></FcGoogle>
             </form>
           </div>
         </div>

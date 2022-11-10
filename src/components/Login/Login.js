@@ -104,7 +104,7 @@ const Login = () => {
                   placeholder="password"
                   className="input input-bordered"
                 />
-                <FcGoogle className='ml-36 text-xl hover:cursor-pointer ' onClick={handleGoogleLogin}/>
+                <FcGoogle className='md:ml-36 ml-24 mt-3 text-xl hover:cursor-pointer ' onClick={handleGoogleLogin}/>
                 <label className="label">
                   <Link to='/register'  className="label-text-alt link link-hover">
                   Dont have acount? Register

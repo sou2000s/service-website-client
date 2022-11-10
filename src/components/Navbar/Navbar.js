@@ -21,7 +21,7 @@ const Navbar = () => {
     return (
         <div className='text-center bg-orange-500 text-[#190e0e] '> 
        
-            <ul className={`md:flex md:static   absolute text-xl justify-center bg-orange-500 md:w-full w-52 z-[20] md:p-0  ease-in-out duration-500  ${open ? "top-[31px]" : "top-[-250px]"}`}>
+            <ul className={`md:flex md:static   absolute text-xl justify-center bg-orange-500 md:w-full w-52 z-[20] md:p-0  ease-in-out duration-500  ${open ? "top-[31px]" : "top-[-300px]"}`}>
             <li className='ml-5 md:mt-0 mt-4'><Link to='/'>Home</Link></li>
             <li className='ml-5 md:mt-0 mt-4'><Link to='/tours'>Tours</Link></li>
             <li className='ml-5 md:mt-0 mt-4'> <Link to='/blogs'>Blogs</Link></li>
